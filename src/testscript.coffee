@@ -1,22 +1,21 @@
-# Description
-#   A hubot script that does the things
-#
-# Configuration:
-#   LIST_OF_ENV_VARS_TO_SET
-#
-# Commands:
-#   hubot hello - <what the respond trigger does>
-#   orly - <what the hear trigger does>
-#
-# Notes:
-#   <optional notes required for the script>
-#
-# Author:
-#   aki
-
 module.exports = (robot) ->
-  robot.respond /hello/, (res) ->
-    res.reply "hello!"
+  robot.respond /テステス/, (msg) ->
+    mysql = require('mysql')
+    connection = mysql.createConnection(
+   host: 'localhost'
+   user: ''
+   password: ''
+   database: 'jikanwari'
+   )
 
-  robot.hear /orly/, (res) ->
-    res.send "yarly"
+   #接続
+   connection.connect()
+
+   #時間割の取得
+   connection.query 'SELECT 3gen FROM december WHERE date = 22;', (err, rows, fields) ->
+   if err
+    console.log 'err'
+   console.log (rows)
+
+   #接続終了
+   connection.end()
