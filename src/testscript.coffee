@@ -1,5 +1,5 @@
 module.exports = (robot) ->
-  robot.respond /テステス/, (msg) ->
+  robot.respond /ここを変更するテスト/, (msg) ->
     mysql = require('mysql')
     connection = mysql.createConnection(
    host: 'localhost'
